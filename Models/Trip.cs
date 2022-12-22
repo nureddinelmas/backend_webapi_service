@@ -2,6 +2,8 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
+
+/// Here there are our model, all items model here we wrote. Id comes from database That's why we wrote Bson Object ID.
 public class Trip
 {
     [BsonId]
