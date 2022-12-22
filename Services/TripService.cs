@@ -23,23 +23,13 @@ public class TripService
         return;
     }
 
+     public async Task<Trip> GetAsync(string id) =>
+        await _tripCollection.Find(trip => trip.Id == id).FirstOrDefaultAsync();
 
     public async Task<List<Trip>> GetTrip()
     {
         return await _tripCollection.Find(new BsonDocument()).ToListAsync();
     }
-
-/*
-    public async Task AddToTripAsync(string id, string src_airport)
-    {
-        FilterDefinition<Trip> filter = Builders<Trip>.Filter.Eq("Id", id);
-       // FieldDefinition<Trip, string> field = Builders<Trip>.
-        UpdateDefinition<Trip> update = Builders<Trip>.Update.Set<string>("src_airport", src_airport);
-        // .AddToSet<string>("src_airport", src_airport);
-        await _tripCollection.UpdateOneAsync(filter, update);
-        return;
-    }
-    */
 
     public async Task UpdateTrip(string id, Trip newTrip) => await _tripCollection.ReplaceOneAsync( trip => trip.Id == id, newTrip);
 
